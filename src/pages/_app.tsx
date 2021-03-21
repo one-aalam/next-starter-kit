@@ -11,12 +11,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   const Layout = (Component as any)?.defaultProps?.Layout || React.Fragment
   const pageMeta = (Component as any)?.defaultProps?.meta || {}
   const pageSEO = {...SEO, ...pageMeta }
-  console.log(pageSEO)
+  
   return <React.Fragment>
     <Head>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
     </Head>
-    <DefaultSeo {...SEO } />
+    <DefaultSeo {...pageSEO } />
     <Layout>
       <Component {...pageProps} />
     </Layout>
