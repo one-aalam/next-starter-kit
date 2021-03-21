@@ -1,22 +1,28 @@
+import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '~/styles/Home.module.css'
+import HashIcon from '../svgs/hash-icon.svg'
 
-export default function Home() {
+type IndexPageProps = {
+  title: string
+}
+
+const IndexPage: NextPage<IndexPageProps> = ({ title }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          <HashIcon /> {title}
         </h1>
 
         <p className={styles.description}>
           Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          <code className={styles.code}>src/pages/index.tsx</code>
         </p>
 
         <div className={styles.grid}>
@@ -62,4 +68,14 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export default IndexPage
+
+export const getServerSideProps: GetServerSideProps<IndexPageProps> = async () => {
+  return {
+    props: {
+      title: 'Next.js Starter Kit',
+    },
+  }
 }
