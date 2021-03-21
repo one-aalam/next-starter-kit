@@ -2,22 +2,22 @@ import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import styles from '~/styles/Home.module.css'
 import HashIcon from '../svgs/hash-icon.svg'
+import { NextAppPageProps } from '~/types/app'
+import BaseLayout from '~/components/BaseLayout'
 
-type IndexPageProps = {
-  title: string
+type IndexPageServerSideProps = {
+  meta: {
+    title: string
+  }
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ title }) => {
+const IndexPage: NextPage<NextAppPageProps> = ({ meta }) => {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <HashIcon /> {title}
+          <HashIcon /> {meta?.title}
         </h1>
 
         <p className={styles.description}>
@@ -72,10 +72,15 @@ const IndexPage: NextPage<IndexPageProps> = ({ title }) => {
 
 export default IndexPage
 
-export const getServerSideProps: GetServerSideProps<IndexPageProps> = async () => {
+// @ts-ignore
+IndexPage.Layout = BaseLayout
+
+export const getServerSideProps: GetServerSideProps<IndexPageServerSideProps> = async () => {
   return {
     props: {
-      title: 'Next.js Starter Kit',
+      meta: {
+        title: 'Next.js Starter Kit'
+      }
     },
   }
 }
