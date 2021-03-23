@@ -6,44 +6,45 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
-          <link href="/static/favicons/favicon.ico" rel="shortcut icon" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
-          <link href="/static/favicons/site.webmanifest" rel="manifest" />
+          {/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" /> */}
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" />
+          <link href="/favicons/favicon.ico" rel="shortcut icon" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+          <link href="/favicons/site.webmanifest" rel="manifest" />
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com/"
             crossOrigin=""
           />
           <link
-            href="/static/favicons/apple-touch-icon.png"
+            href="/favicons/apple-touch-icon.png"
             rel="apple-touch-icon"
             sizes="180x180"
           />
           <link
-            href="/static/favicons/favicon-32x32.png"
+            href="/favicons/favicon-32x32.png"
             rel="icon"
             sizes="32x32"
             type="image/png"
           />
           <link
-            href="/static/favicons/favicon-16x16.png"
+            href="/favicons/favicon-16x16.png"
             rel="icon"
             sizes="16x16"
             type="image/png"
           />
           <link
             color="#4a9885"
-            href="/static/favicons/safari-pinned-tab.svg"
+            href="/favicons/safari-pinned-tab.svg"
             rel="mask-icon"
           />
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
           <meta content="#ffffff" name="theme-color" />
           <meta content="#ffffff" name="msapplication-TileColor" />
           <meta
-            content="/static/favicons/browserconfig.xml"
+            content="/favicons/browserconfig.xml"
             name="msapplication-config"
           />
         </Head>
