@@ -13,6 +13,7 @@ type IndexPageServerSideProps = {
 
 const IndexPage: NextPage<NextAppPageProps> = ({ meta }) => {
   return (
+    <BaseLayout>
     <div className={styles.container}>
 
       <main className={styles.main}>
@@ -67,13 +68,11 @@ const IndexPage: NextPage<NextAppPageProps> = ({ meta }) => {
         </a>
       </footer>
     </div>
+    </BaseLayout>
   )
 }
 
 export default IndexPage
-
-// @ts-ignore
-IndexPage.Layout = BaseLayout
 
 export const getServerSideProps: GetServerSideProps<IndexPageServerSideProps> = async () => {
   return {
