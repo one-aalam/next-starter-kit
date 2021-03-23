@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styles from '~/styles/Home.module.css'
 import HashIcon from '../svgs/hash-icon.svg'
 import { NextAppPageProps } from '~/types/app'
-import BaseLayout from '~/components/BaseLayout'
+import Layout from '~/components/Layout'
 
 type IndexPageServerSideProps = {
   meta: {
@@ -13,7 +13,7 @@ type IndexPageServerSideProps = {
 
 const IndexPage: NextPage<NextAppPageProps> = ({ meta }) => {
   return (
-    <BaseLayout>
+    <Layout>
     <div className={styles.container}>
 
       <main className={styles.main}>
@@ -68,7 +68,7 @@ const IndexPage: NextPage<NextAppPageProps> = ({ meta }) => {
         </a>
       </footer>
     </div>
-    </BaseLayout>
+    </Layout>
   )
 }
 
