@@ -23,12 +23,13 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
   const { loading, signIn, signUp } = useAuth()
   // Now since we have our form ready, what we're gonna need for signing up our users
   // 1. let users provide email and password
-  const [ values, handleChange ] = useFormFields<SignUpFieldProps>(FORM_VALUES)
+  const [ values, handleChange, resetFormFields ] = useFormFields<SignUpFieldProps>(FORM_VALUES)
   // 2. send the provided details to Supabase
 
-  const handleSumbit = (event: React.FormEvent) => {
+  const handleSumbit = async (event: React.FormEvent) => {
     event.preventDefault()
-    isSignIn ?  signIn(values) : signUp(values)
+    isSignIn ?  await signIn(values) : await signUp(values)
+    resetFormFields()
   }
 
   return (
