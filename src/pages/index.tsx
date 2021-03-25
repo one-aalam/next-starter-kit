@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next'
-import Head from 'next/head'
+import { FaDochub, FaBook } from 'react-icons/fa'
 import styles from '~/styles/Home.module.css'
 import HashIcon from '../svgs/hash-icon.svg'
 import { NextAppPageProps } from '~/types/app'
@@ -28,11 +28,13 @@ const IndexPage: NextPage<NextAppPageProps> = ({ meta }) => {
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
+            <FaDochub className="text-4xl mb-2"/>
             <h3>Documentation &rarr;</h3>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
+            <FaBook className="text-4xl mb-2" />
             <h3>Learn &rarr;</h3>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>

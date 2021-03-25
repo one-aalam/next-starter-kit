@@ -1,17 +1,32 @@
-import { Fragment, ReactChildren, FunctionComponent } from 'react'
+import { Fragment, FunctionComponent } from 'react'
+import classNames from 'classnames'
 import Header from './Header'
 import Footer from './Footer'
 
-const FullLayout: FunctionComponent = ({ children }: { children: ReactChildren }) => {
+type LayoutProps = {
+  usePadding?: boolean,
+  useBackdrop?: boolean
+}
+
+const FullLayout: FunctionComponent<LayoutProps> = ({ children, usePadding, useBackdrop }) => {
     return (
       <Fragment>
         <Header/>
-        <main className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <main className={classNames(
+            `w-full h-screen mx-auto`,
+            usePadding && 'px-2 sm:px-6 lg:px-8',
+            useBackdrop && 'bg-gray-200'
+            )}>
             {children}
         </main>
         <Footer/>
       </Fragment>
     )
+}
+
+FullLayout.defaultProps = {
+  usePadding: true,
+  useBackdrop: false
 }
 
 export default FullLayout
