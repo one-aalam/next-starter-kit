@@ -3,10 +3,26 @@ import { FaLock } from 'react-icons/fa'
 import { NextAppPageProps } from '~/types/app'
 import Layout from '~/components/Layout'
 import { useMessage } from '~/lib/message'
+import { useFormFields } from '~/lib/utils'
 
+
+
+type SignUpFieldProps = {
+  email: string,
+  password: string
+}
+
+const FORM_VALUES: SignUpFieldProps = {
+  email: '',
+  password: ''
+}
 
 const IndexPage: NextPage<NextAppPageProps> = ({}) => {
   const { handleMessage } = useMessage()
+  // Now since we have our form ready, what we're gonna need for signing up our users
+  // 1. let users provide email and password
+  const [values, handleChange ] = useFormFields<SignUpFieldProps>(FORM_VALUES)
+  // 2. send the provided details to Supabase
 
   return (
     <Layout useBackdrop={true} usePadding={false}>
@@ -31,6 +47,8 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
               className="h-12 px-4 py-2 bg-white rounded shadow-inner border-gray-300 w-full border  hover:border-gray-400"
               placeholder="Your Email"
               required
+              value={values.email}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-4">
@@ -42,6 +60,8 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
               className="h-12 px-4 py-2 bg-white rounded shadow-inner border-gray-300 w-full border hover:border-gray-400"
               placeholder="Your password"
               required
+              value={values.password}
+              onChange={handleChange}
             />
           </div>
 
@@ -51,7 +71,7 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
             <button type="submit" className="flex-1 bg-gray-500 border border-gray-600 text-white py-3 rounded w-full text-center shadow"
             onClick={(evt) => {
               evt.preventDefault()
-              handleMessage({ message: 'will sign up..', type: 'success'})
+              handleMessage({ message: `will sign up with ${values.email}`})
             }}
             >
               Sign Up
