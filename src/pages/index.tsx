@@ -15,7 +15,7 @@ type SignUpFieldProps = {
   password: string
 }
 
-type SupabaseSignupPayload = SignUpFieldProps
+type SupabaseAuthPayload = SignUpFieldProps
 
 const FORM_VALUES: SignUpFieldProps = {
   email: '',
@@ -24,12 +24,13 @@ const FORM_VALUES: SignUpFieldProps = {
 
 const IndexPage: NextPage<NextAppPageProps> = ({}) => {
   const [loading, setLoading] = useState(false)
+  const [isSignIn, setIsSignIn] = useState(true)
   const { handleMessage } = useMessage()
   // Now since we have our form ready, what we're gonna need for signing up our users
   // 1. let users provide email and password
   const [values, handleChange ] = useFormFields<SignUpFieldProps>(FORM_VALUES)
   // 2. send the provided details to Supabase
-  const signUp = async (payload: SupabaseSignupPayload) => {
+  const signUp = async (payload: SupabaseAuthPayload) => {
     try {
       setLoading(true)
       const { error } = await supabase.auth.signUp(payload)
@@ -46,9 +47,23 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
     }
   }
 
+  const signIn = async (payload: SupabaseAuthPayload) => {
+    try {
+      const { error } = await supabase.auth.signIn(payload)
+      if (error) {
+        handleMessage({ message: error.message, type: 'error' })
+      } else {
+        handleMessage({ message: 'Log in successful. I\'ll redirect you once I\'m done', type: 'success' })
+      }
+    } catch (error) {
+      handleMessage({ message: error.error_description || error, type: 'error' })
+    }
+  }
+
+
   const handleSumbit = (event: React.FormEvent) => {
     event.preventDefault()
-    signUp(values)
+    isSignIn ? signIn(values) : signUp(values)
   }
 
 
@@ -60,7 +75,7 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
       <div className="w-full text-center mb-4 flex  flex-col place-items-center">
         <div><FaLock className="text-gray-600 text-5xl shadow-sm"/></div>
         <h3 className="text-3xl text-gray-600">Supa<strong>Auth</strong>&nbsp;</h3>
-        <small>Please provide your <strong>email</strong> and <strong>password</strong> and sign up</small>
+        <small>Please provide your <strong>email</strong> and <strong>password</strong> and {isSignIn ? 'Log In' : 'Sign Up' }</small>
       </div>
 
       {/* Sign Up form --> */}
@@ -93,12 +108,22 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
             />
           </div>
 
-          {/* <!-- Sign Up form: Actions --> */}
+          {/* <!-- Sign Up & Sign In form: Actions --> */}
 
           <div className="flex pt-4 gap-2">
-            <button type="submit" disabled={loading} className="flex-1 bg-gray-500 border border-gray-600 text-white py-3 rounded w-full text-center shadow">
-              Sign Up
+            <button type="submit" className="flex-1 bg-gray-500 border border-gray-600 text-white py-3 rounded w-full text-center shadow"
+            >
+              {isSignIn ? 'Log In' : 'Sign Up'}
             </button>
+            <div className="flex-1 text-right">
+              <small className="block text-gray-600">{isSignIn ? 'Not a member yet?' : 'Already a member?'} </small>
+              <a className="block font-semibold" href=""
+                onClick={(e) => {
+                  e.preventDefault()
+                  setIsSignIn(!isSignIn)
+                }}
+              >{isSignIn ?  'Sign Up' : 'Log In' }</a>
+            </div>
           </div>
           </div>
         </form>
