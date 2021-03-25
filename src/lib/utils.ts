@@ -8,6 +8,6 @@ export function useFormFields<T>(initialValues: T): [T, (event: React.ChangeEven
       const { name, value } = target;
       setValues({ ...values, [name]: value })
     }
-    const resetForm = () => setValues(initialValues)
-    return [ values, handleChange, resetForm ]
+    const resetFormFields = () => setValues(initialValues)
+    return [ values, handleChange, resetFormFields ]
   }
