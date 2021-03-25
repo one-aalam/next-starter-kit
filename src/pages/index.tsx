@@ -15,7 +15,6 @@ const IndexPage: NextPage<NextAppPageProps> = ({ meta }) => {
   return (
     <Layout>
     <div className={styles.container}>
-
       <main className={styles.main}>
         <h1 className="w-full flex flex-col place-items-center text-6xl gap-2">
           <HashIcon /><img src="/nsk.png" alt="NSK Logo" className="w-32" /> {meta?.title}
