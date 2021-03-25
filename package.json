@@ -14,6 +14,7 @@
     "validate": "npm-run-all --parallel type-check format-check lint build"
   },
   "dependencies": {
+    "@reach/alert": "^0.13.2",
     "add": "^2.0.6",
     "classnames": "^2.2.6",
     "next": "10.0.9",
