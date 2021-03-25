@@ -3,11 +3,9 @@ import { NextPage } from 'next'
 import { FaLock } from 'react-icons/fa'
 import { NextAppPageProps } from '~/types/app'
 import Layout from '~/components/Layout'
-import { useMessage } from '~/lib/message'
-import { useFormFields } from '~/lib/utils'
-import { supabase } from '~/lib/supabase'
 import Spinner from '~/components/Spinner'
-
+import { useFormFields } from '~/lib/utils'
+import { useAuth } from '~/lib/auth'
 
 
 type SignUpFieldProps = {
@@ -15,57 +13,23 @@ type SignUpFieldProps = {
   password: string
 }
 
-type SupabaseAuthPayload = SignUpFieldProps
-
 const FORM_VALUES: SignUpFieldProps = {
   email: '',
   password: ''
 }
 
 const IndexPage: NextPage<NextAppPageProps> = ({}) => {
-  const [loading, setLoading] = useState(false)
-  const [isSignIn, setIsSignIn] = useState(true)
-  const { handleMessage } = useMessage()
+  const [ isSignIn, setIsSignIn ] = useState(true)
+  const { loading, signIn, signUp } = useAuth()
   // Now since we have our form ready, what we're gonna need for signing up our users
   // 1. let users provide email and password
-  const [values, handleChange ] = useFormFields<SignUpFieldProps>(FORM_VALUES)
+  const [ values, handleChange ] = useFormFields<SignUpFieldProps>(FORM_VALUES)
   // 2. send the provided details to Supabase
-  const signUp = async (payload: SupabaseAuthPayload) => {
-    try {
-      setLoading(true)
-      const { error } = await supabase.auth.signUp(payload)
-      if (error) {
-        handleMessage({ message: error.message, type: 'error' })
-      }
-      else { 
-        handleMessage({ message: 'Signup successful. Please check your inbox for a confirmation email!', type: 'success' })
-      }
-    } catch (error) {
-      handleMessage({ message: error.error_description || error, type: 'error' })
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const signIn = async (payload: SupabaseAuthPayload) => {
-    try {
-      const { error } = await supabase.auth.signIn(payload)
-      if (error) {
-        handleMessage({ message: error.message, type: 'error' })
-      } else {
-        handleMessage({ message: 'Log in successful. I\'ll redirect you once I\'m done', type: 'success' })
-      }
-    } catch (error) {
-      handleMessage({ message: error.error_description || error, type: 'error' })
-    }
-  }
-
 
   const handleSumbit = (event: React.FormEvent) => {
     event.preventDefault()
-    isSignIn ? signIn(values) : signUp(values)
+    isSignIn ?  signIn(values) : signUp(values)
   }
-
 
   return (
     <Layout useBackdrop={true} usePadding={false}>
