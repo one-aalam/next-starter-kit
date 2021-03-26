@@ -1,4 +1,3 @@
-<img style="height:100px" src="./public/nsk.png"/>
 
 # Next.js Starter Kit
 Boilerplate to quckly get up and running with Next.js with
