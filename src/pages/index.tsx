@@ -71,8 +71,7 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
               name="password"
               type="password"
               className="h-12 px-4 py-2 bg-white rounded shadow-inner border-gray-300 w-full border hover:border-gray-400"
-              placeholder="Your password"
-              required
+              placeholder="Your password. Leave empty for password-less login"
               value={values.password}
               onChange={handleChange}
             />

@@ -52,7 +52,7 @@ export const AuthProvider: FunctionComponent = ({
           if (error) {
             handleMessage({ message: error.message, type: 'error' })
           } else {
-            handleMessage({ message: `Welcome, ${user.email}`, type: 'success' })
+            handleMessage({ message: payload.password.length ? `Welcome, ${user.email}`: `Please check your email for the magic link`, type: 'success' })
           }
         } catch (error) {
           handleMessage({ message: error.error_description || error, type: 'error' })
