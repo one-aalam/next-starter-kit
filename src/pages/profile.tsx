@@ -1,12 +1,15 @@
 import { useEffect } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Link from 'next/link'
 import Router from 'next/router'
+import { supabase } from '~/lib/supabase'
 import { useAuth } from '~/lib/auth'
 import Layout from '~/components/Layout'
 import { SpinnerFullPage } from '~/components/Spinner'
 import { ROUTE_AUTH } from '~/config'
+import { NextAppPageServerSideProps } from '~/types/app'
 
-const ProfilePage = ({}) => {
+const ProfilePage = ({ }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const { user, userLoading, signOut, loggedIn } = useAuth()
 
     useEffect(() => {
@@ -33,3 +36,24 @@ const ProfilePage = ({}) => {
 }
 
 export default ProfilePage
+
+export const getServerSideProps: GetServerSideProps = async ({ req }): Promise<NextAppPageServerSideProps> => {
+    const { user } = await supabase.auth.api.getUserByCookie(req)
+    // We can do a re-direction from the server
+    if(!user) {
+        return {
+            redirect: {
+              destination: '/',
+              permanent: false,
+            },
+        }
+    }
+    // or, alternatively, can send the same values that client-side context populates to check on the client and redirect
+    // The following lines won't be used as we're redirecting above
+    return {
+        props: {
+            user,
+            loggedIn: !!user
+        }
+    }
+}
