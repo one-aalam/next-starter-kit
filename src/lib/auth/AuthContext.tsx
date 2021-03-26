@@ -10,6 +10,7 @@ export type AuthContextProps = {
     user: User,
     signUp: (payload: SupabaseAuthPayload) => void,
     signIn: (payload: SupabaseAuthPayload) => void,
+    signInWithGithub: () => void,
     signOut: () => void,
     loggedIn: boolean,
     loading: boolean,
@@ -58,6 +59,11 @@ export const AuthProvider: FunctionComponent = ({
         } finally {
             setLoading(false)
         }
+    }
+
+    const signInWithGithub = async (evt) => {
+      evt.preventDefault()
+      await supabase.auth.signIn({ provider: 'github'})
     }
 
     const signOut = async () => await supabase.auth.signOut()
@@ -109,6 +115,7 @@ export const AuthProvider: FunctionComponent = ({
                 user,
                 signUp, 
                 signIn,
+                signInWithGithub,
                 signOut,
                 loggedIn,
                 loading,
