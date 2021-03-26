@@ -64,12 +64,14 @@ export const AuthProvider: FunctionComponent = ({
     
     useEffect(() => {
         const user = supabase.auth.user()
-    
+
         if (user) {
           setUser(user)
           setUserLoading(false)
           setLoggedin(true)
           Router.push(ROUTE_HOME)
+        } else {
+          setUserLoading(false)
         }
       
         const { data: authListener } = supabase.auth.onAuthStateChange(
@@ -77,9 +79,11 @@ export const AuthProvider: FunctionComponent = ({
             const user = session?.user! ?? null
             setUserLoading(false)
             if (user) {
+              setUser(user)
               setLoggedin(true)
               Router.push(ROUTE_HOME)
             } else {
+              setUser(null)
               Router.push(ROUTE_AUTH)
             }
           }
