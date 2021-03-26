@@ -36,7 +36,7 @@ const ProfilePage = ({ }: InferGetServerSidePropsType<typeof getServerSideProps>
 }
 
 export default ProfilePage
-
+// Fetch user data server-side to eliminate a flash of unauthenticated content.
 export const getServerSideProps: GetServerSideProps = async ({ req }): Promise<NextAppPageServerSideProps> => {
     const { user } = await supabase.auth.api.getUserByCookie(req)
     // We can do a re-direction from the server
