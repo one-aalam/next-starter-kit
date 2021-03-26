@@ -1,4 +1,5 @@
-Next.js Starter Kit is a project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img src="/public/nsk.png"/>
+# Next.js Starter Kit
 
 ## Getting Started
 
