@@ -1,4 +1,15 @@
-Next.js Starter Kit is a project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Starter Kit
+Boilerplate to quckly get up and running with Next.js with
+- __Typescript__ as the language choice
+- __Tailwind CSS__ for quick styling without getting out of your HTML
+- __ESLint__ for static code analysis
+- __Prettier__ for code formatting
+- __SEO__ pre-configured
+- __Icons & SVG__ support out of the box
+
+and pre-made
+- __Message/Alerts__ `coz who don't uses one?
+- __Authentication system with Supabase__ In the [with-supabase](https://github.com/one-aalam/next-starter-kit/tree/auth-supabase) branch
 
 ## Getting Started
 
