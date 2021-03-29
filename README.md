@@ -9,7 +9,7 @@ Boilerplate to quckly get up and running with Next.js with
 - __Icons & SVG__ support out of the box
 
 and pre-made
-- __Messaging system__ `coz who don't uses one?
+- __Message/Alerts__ `coz who don't uses one?
 - __Authentication system with Supabase__
 
 
