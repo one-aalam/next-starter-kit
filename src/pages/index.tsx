@@ -20,7 +20,7 @@ const FORM_VALUES: SignUpFieldProps = {
 
 const IndexPage: NextPage<NextAppPageProps> = ({}) => {
   const [ isSignIn, setIsSignIn ] = useState(true)
-  const { loading, signIn, signUp, signInWithGithub } = useAuth()
+  const { loading, signIn, signUp, signInWithProvider } = useAuth()
   // Now since we have our form ready, what we're gonna need for signing up our users
   // 1. let users provide email and password
   const [ values, handleChange, resetFormFields ] = useFormFields<SignUpFieldProps>(FORM_VALUES)
@@ -31,6 +31,11 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
     isSignIn ?  await signIn(values) : await signUp(values)
     resetFormFields()
   }
+
+//   const signInWithGithub = async (event: MouseEvent|KeyboardEvent) => {
+//       event.preventDefault()
+//       await signInWithProvider('github')
+//   }
 
   return (
     <Layout useBackdrop={true} usePadding={false}>
@@ -46,7 +51,11 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
       {/* Sign Up form --> */}
       <form className="w-full sm:w-1/2 xl:w-1/3" onSubmit={handleSumbit}>
         <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
-          <button onClick={signInWithGithub} className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
+          <button onClick={(evt) => {
+              evt.preventDefault();
+              signInWithProvider('github')
+            }}
+            className="flex-1 bg-gray-200 text-green-700 py-3 rounded w-full text-center shadow"
             >
               <FaGithub className="inline-block text-2xl"/> {isSignIn ? 'Log In' : 'Sign Up' } with <strong>Github</strong>
           </button>

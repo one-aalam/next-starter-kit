@@ -1,6 +1,6 @@
-import { createContext, FunctionComponent, useState, useEffect, useCallback } from 'react'
+import { createContext, FunctionComponent, useState, useEffect, useCallback, MouseEventHandler, EventHandler, SyntheticEvent } from 'react'
 import Router from 'next/router'
-import { User, Session, AuthChangeEvent } from '@supabase/supabase-js'
+import { User, Session, AuthChangeEvent, Provider } from '@supabase/supabase-js'
 import { supabase } from '~/lib/supabase'
 import { useMessage } from '~/lib/message'
 import { SupabaseAuthPayload } from './auth.types'
@@ -10,7 +10,7 @@ export type AuthContextProps = {
     user: User,
     signUp: (payload: SupabaseAuthPayload) => void,
     signIn: (payload: SupabaseAuthPayload) => void,
-    signInWithGithub: () => void,
+    signInWithProvider: (provider: Provider) => Promise<void>,
     signOut: () => void,
     loggedIn: boolean,
     loading: boolean,
@@ -35,7 +35,7 @@ export const AuthProvider: FunctionComponent = ({
           if (error) {
             handleMessage({ message: error.message, type: 'error' })
           }
-          else { 
+          else {
             handleMessage({ message: 'Signup successful. Please check your inbox for a confirmation email!', type: 'success' })
           }
         } catch (error) {
@@ -44,7 +44,7 @@ export const AuthProvider: FunctionComponent = ({
           setLoading(false)
         }
     }
-    
+
     const signIn = async (payload: SupabaseAuthPayload) => {
         try {
             setLoading(true)
@@ -61,9 +61,8 @@ export const AuthProvider: FunctionComponent = ({
         }
     }
 
-    const signInWithGithub = async (evt) => {
-      evt.preventDefault()
-      await supabase.auth.signIn({ provider: 'github'})
+    const signInWithProvider = async (provider: Provider) => {
+        await supabase.auth.signIn({ provider })
     }
 
     const signOut = async () => await supabase.auth.signOut()
@@ -76,7 +75,7 @@ export const AuthProvider: FunctionComponent = ({
         body: JSON.stringify({ event, session }),
       })
     }
-    
+
     useEffect(() => {
         const user = supabase.auth.user()
 
@@ -88,7 +87,7 @@ export const AuthProvider: FunctionComponent = ({
         } else {
           setUserLoading(false)
         }
-      
+
         const { data: authListener } = supabase.auth.onAuthStateChange(
           async (event, session) => {
             const user = session?.user! ?? null
@@ -104,18 +103,18 @@ export const AuthProvider: FunctionComponent = ({
             }
           }
         )
-    
+
         return () => {
           authListener.unsubscribe()
         }
     }, [])
 
-    
-    return (<AuthContext.Provider value={{ 
+
+    return (<AuthContext.Provider value={{
                 user,
-                signUp, 
+                signUp,
                 signIn,
-                signInWithGithub,
+                signInWithProvider,
                 signOut,
                 loggedIn,
                 loading,
