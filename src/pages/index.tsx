@@ -32,11 +32,6 @@ const IndexPage: NextPage<NextAppPageProps> = ({}) => {
     resetFormFields()
   }
 
-//   const signInWithGithub = async (event: MouseEvent|KeyboardEvent) => {
-//       event.preventDefault()
-//       await signInWithProvider('github')
-//   }
-
   return (
     <Layout useBackdrop={true} usePadding={false}>
       <div className="h-screen flex flex-col justify-center items-center relative">
