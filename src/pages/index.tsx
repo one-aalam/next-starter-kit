@@ -17,7 +17,7 @@ const FORM_VALUES: SignUpFieldProps = {
   password: '',
 }
 
-const IndexPage: NextPage<NextAppPageProps> = ({}) => {
+const IndexPage: NextPage<NextAppPageProps> = () => {
   const [isSignIn, setIsSignIn] = useState(true)
   const { loading, signIn, signUp, signInWithProvider } = useAuth()
   // Now since we have our form ready, what we're gonna need for signing up our users

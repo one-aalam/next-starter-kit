@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import Router from 'next/router'
 import { supabase } from '~/lib/supabase'
@@ -9,9 +9,7 @@ import { SpinnerFullPage } from '~/components/Spinner'
 import { ROUTE_AUTH } from '~/config'
 import { NextAppPageServerSideProps } from '~/types/app'
 
-const ProfilePage = ({}: InferGetServerSidePropsType<
-  typeof getServerSideProps
->) => {
+const ProfilePage = () => {
   const { user, userLoading, signOut, loggedIn } = useAuth()
 
   useEffect(() => {
