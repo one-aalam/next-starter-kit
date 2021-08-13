@@ -1,7 +1,7 @@
 export type MessageType = 'default' | 'success' | 'error'
 
 export type MessageProps = {
-  type: MessageType , 
+  type: MessageType
   message: string
 }
 

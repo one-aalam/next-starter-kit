@@ -1,5 +1,5 @@
-const title = 'Next.js Starter Kit';
-const description = 'Next.js with brilliant bells and useful whistles';
+const title = 'Next.js Starter Kit'
+const description = 'Next.js with brilliant bells and useful whistles'
 
 const SEO = {
   title,
@@ -16,15 +16,15 @@ const SEO = {
         url: '',
         alt: title,
         width: 1280,
-        height: 720
-      }
-    ]
+        height: 720,
+      },
+    ],
   },
   twitter: {
     handle: '@your-twitter-handle',
     site: '@your-twitter-handle',
-    cardType: 'summary_large_image'
-  }
-};
+    cardType: 'summary_large_image',
+  },
+}
 
-export default SEO;
+export default SEO
