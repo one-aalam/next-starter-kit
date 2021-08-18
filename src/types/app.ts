@@ -1,7 +1,7 @@
 export type NextAppSEOProps = {
-    title: string
+  title: string
 }
 
 export type NextAppPageProps = {
-    meta: NextAppSEOProps,
+  meta: NextAppSEOProps
 }

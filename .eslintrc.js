@@ -6,7 +6,11 @@ module.exports = {
   },
   parserOptions: { ecmaVersion: 8 }, // enable features such as async/await
   ignorePatterns: ['node_modules/*', '.next/*', '.out/*', '!.prettierrc.js'], // We don't want to lint generated files nor node_modules, but we want to lint .prettierrc.js (ignored by default by eslint)
-  extends: ['react-app', 'plugin:prettier/recommended'],
+  extends: [
+    'react-app',
+    'plugin:prettier/recommended',
+    'plugin:@next/next/recommended',
+  ],
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': [
@@ -30,5 +34,7 @@ module.exports = {
     //     allowConciseArrowFunctionExpressionsStartingWithVoid: true,
     //   },
     // ],
+    // This rule disables the `Image` component's usage check. Enable if you'd prefer to turn it on for the entire app.
+    '@next/next/no-img-element': 'off',
   },
 }
