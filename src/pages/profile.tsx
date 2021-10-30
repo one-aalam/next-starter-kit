@@ -3,13 +3,13 @@ import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import Router from 'next/router'
 import { supabase } from '~/lib/supabase'
-import { useAuth } from '~/lib/auth'
+import { useAuth, ProtectedRoute } from '~/lib/auth'
 import Layout from '~/components/Layout'
 import { SpinnerFullPage } from '~/components/Spinner'
 import { ROUTE_AUTH } from '~/config'
 import { NextAppPageServerSideProps } from '~/types/app'
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
   const { user, userLoading, signOut, loggedIn } = useAuth()
 
   useEffect(() => {
@@ -50,7 +50,9 @@ const ProfilePage = () => {
 }
 
 export default ProfilePage
+
 // Fetch user data server-side to eliminate a flash of unauthenticated content.
+// We're identifying the logged-in user through supabase cookies and either redirecting to  `/` if the user is not found, or sending the `user` and `loggedIn` props which can be available to the above component through `props`.
 export const getServerSideProps: GetServerSideProps = async ({
   req,
 }): Promise<NextAppPageServerSideProps> => {
@@ -73,3 +75,14 @@ export const getServerSideProps: GetServerSideProps = async ({
     },
   }
 }
+
+// As there could be many pages that'll be required to be rendered only for the logged-in users, and the above logic
+// for indetifying authenticity could become repetitive, there's a wrapper component `ProtectedRoute` already available
+// that could be used like
+/*
+export const getServerSideProps: GetServerSideProps = (context) => ProtectedRoute({ context, getPropsFunc: async (options) => {
+    return {
+        'more': 'data'
+    }
+}})
+*/
