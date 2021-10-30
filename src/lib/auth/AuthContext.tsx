@@ -1,15 +1,14 @@
 import { createContext, FunctionComponent, useState, useEffect } from 'react'
 import Router from 'next/router'
-import { User, Session, AuthChangeEvent, Provider } from '@supabase/supabase-js'
+import { User, Session, AuthChangeEvent, Provider, UserCredentials } from '@supabase/supabase-js'
 import { supabase } from '~/lib/supabase'
 import { useMessage } from '~/lib/message'
-import { SupabaseAuthPayload } from './auth.types'
 import { ROUTE_HOME, ROUTE_AUTH } from '~/config'
 
 export type AuthContextProps = {
   user: User
-  signUp: (payload: SupabaseAuthPayload) => void
-  signIn: (payload: SupabaseAuthPayload) => void
+  signUp: (payload: UserCredentials) => void
+  signIn: (payload: UserCredentials) => void
   signInWithProvider: (provider: Provider) => Promise<void>
   signOut: () => void
   loggedIn: boolean
@@ -26,7 +25,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
   const [loggedIn, setLoggedin] = useState(false)
   const { handleMessage } = useMessage()
 
-  const signUp = async (payload: SupabaseAuthPayload) => {
+  const signUp = async (payload: UserCredentials) => {
     try {
       setLoading(true)
       const { error } = await supabase.auth.signUp(payload)
@@ -49,7 +48,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     }
   }
 
-  const signIn = async (payload: SupabaseAuthPayload) => {
+  const signIn = async (payload: UserCredentials) => {
     try {
       setLoading(true)
       const { error, user } = await supabase.auth.signIn(payload)
