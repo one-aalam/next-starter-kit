@@ -9,7 +9,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['Varela Round', ...fontFamily.sans],
+      sans: ['Work Sans', ...fontFamily.sans],
     },
     extend: {},
   },

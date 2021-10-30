@@ -5,12 +5,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-          {/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" /> */}
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
-          />
           <link href="/favicon.ico" rel="shortcut icon" />
           <link
             rel="apple-touch-icon"
@@ -30,11 +24,6 @@ class MyDocument extends Document {
             href="/favicon-16x16.png"
           />
           <link href="/site.webmanifest" rel="manifest" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com/"
-            crossOrigin=""
-          />
           <link
             href="/apple-touch-icon.png"
             rel="apple-touch-icon"

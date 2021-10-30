@@ -14,6 +14,7 @@
     "validate": "npm-run-all --parallel type-check format-check lint build"
   },
   "dependencies": {
+    "@fontsource/work-sans": "^4.5.1",
     "@reach/alert": "^0.14.0",
     "@supabase/supabase-js": "^1.11.8",
     "add": "^2.0.6",

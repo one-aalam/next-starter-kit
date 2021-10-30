@@ -1,4 +1,5 @@
 import 'tailwindcss/tailwind.css'
+import '@fontsource/work-sans'
 import '~/styles/globals.css'
 
 import React from 'react'

@@ -164,6 +164,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/work-sans@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/work-sans/-/work-sans-4.5.1.tgz#b5fdff3f62ca8ac23e7c91e424ec64464ebd4023"
+  integrity sha512-3mvsBxQtxlAyu4uzwKgtI38rZ5V5ZBSz3CgIwQsD1N3DmrT7T1NRLFgO34GxZiUpWSjE04IHPp4Y2GKUWpmFsg==
+
 "@hapi/accept@5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.2.tgz#ab7043b037e68b722f93f376afb05e85c0699523"
