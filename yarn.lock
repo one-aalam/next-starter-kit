@@ -418,6 +418,11 @@
     lodash.merge "^4.6.2"
     lodash.uniq "^4.5.0"
 
+"@tsndr/cloudflare-worker-jwt@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@tsndr/cloudflare-worker-jwt/-/cloudflare-worker-jwt-1.1.4.tgz#ac38658e77c98c87c204c5e6d8e0d176601800f0"
+  integrity sha512-g+6BiVkA/6DKM1/2thA0DQInUVDi+hd1O3q1s/knj2dzdlf9MNH1ZaMMxU0i0DbRnU5lZB+jwlYF0T9Mz6wWFg==
+
 "@types/json-schema@^7.0.7":
   version "7.0.9"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"

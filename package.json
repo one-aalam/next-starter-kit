@@ -17,6 +17,7 @@
     "@fontsource/work-sans": "^4.5.1",
     "@reach/alert": "^0.14.0",
     "@supabase/supabase-js": "^1.11.8",
+    "@tsndr/cloudflare-worker-jwt": "^1.1.4",
     "add": "^2.0.6",
     "classnames": "^2.3.1",
     "next": "^12.0.0",
